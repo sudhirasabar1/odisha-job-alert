@@ -31,12 +31,19 @@ session.headers.update({
 
 def db_request(method, endpoint, **kwargs):
     url = f"{SUPABASE_URL}/rest/v1/{endpoint}"
+    extra_headers = kwargs.pop("headers", {})
+    merged_headers = {**HEADERS, **extra_headers}
+
     response = requests.request(
-        method, url, headers=HEADERS,
-        timeout=30, **kwargs
+        method,
+        url,
+        headers=merged_headers,
+        timeout=30,
+        **kwargs
     )
     response.raise_for_status()
     return response
+
 
 
 def get_sources():
