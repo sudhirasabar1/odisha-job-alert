@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Odisha Job Alert</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+
+  <div id="loginSection" class="login-wrapper">
+    <div class="login-card">
+      <h1>Odisha Job Alert</h1>
+      <p>Administrator Login</p>
+
+      <form id="loginForm">
+        <label>Email Address</label>
+        <input type="email" id="email" required placeholder="Admin email">
+
+        <label>Password</label>
+        <input type="password" id="password" required placeholder="Password">
+
+        <button type="submit">Login to Dashboard</button>
+      </form>
+      <p id="loginMessage" class="message"></p>
+    </div>
+  </div>
+
+  <main id="dashboard" class="dashboard hidden">
+
+    <header class="topbar">
+      <div>
+        <h2>Odisha Job Alert</h2>
+        <p>Admin Control Panel</p>
+      </div>
+      <button id="logoutBtn" class="logout">Logout</button>
+    </header>
+
+    <section class="stats">
+      <div class="stat-card">
+        <span>Total Jobs</span>
+        <h2 id="totalJobs">0</h2>
+      </div>
+      <div class="stat-card pending">
+        <span>Pending Jobs</span>
+        <h2 id="pendingJobs">0</h2>
+      </div>
+      <div class="stat-card approved">
+        <span>Published Jobs</span>
+        <h2 id="approvedJobs">0</h2>
+      </div>
+      <div class="stat-card rejected">
+        <span>Rejected Jobs</span>
+        <h2 id="rejectedJobs">0</h2>
+      </div>
+    </section>
+
+    <section class="jobs-section">
+      <div class="section-header">
+        <h2>Manage Job Notifications</h2>
+        <button id="refreshBtn" class="refresh">Refresh Jobs</button>
+      </div>
+
+      <input type="search" id="searchInput"
+        placeholder="Search job title or department...">
+
+      <div class="filters">
+        <button data-filter="all" class="active">All Jobs</button>
+        <button data-filter="pending">Pending</button>
+        <button data-filter="approved">Approved</button>
+        <button data-filter="rejected">Rejected</button>
+      </div>
+
+      <p id="statusMessage" class="message"></p>
+
+      <div id="jobsList" class="jobs-list"></div>
+    </section>
+
+  </main>
+
+  <dialog id="editDialog">
+    <form id="editForm">
+      <h2>Edit Job Notification</h2>
+
+      <input type="hidden" id="editId">
+
+      <label>Job Title</label>
+      <input id="editTitle" required>
+
+      <label>Odia Job Title</label>
+      <input id="editTitleOdia">
+
+      <label>Department</label>
+      <input id="editDepartment" required>
+
+      <label>Qualification</label>
+      <input id="editQualification">
+
+      <label>Vacancies</label>
+      <input id="editVacancies">
+
+      <label>Salary</label>
+      <input id="editSalary">
+
+      <label>Notification URL</label>
+      <input id="editNotificationUrl" type="url" required>
+
+      <label>Apply Online URL</label>
+      <input id="editApplyUrl" type="url">
+
+      <label>Last Date</label>
+      <input id="editLastDate" type="date">
+
+      <div class="dialog-actions">
+        <button type="button" id="cancelEdit" class="cancel">Cancel</button>
+        <button type="submit">Save Changes</button>
+      </div>
+    </form>
+  </dialog>
+
+</body>
+</html>
